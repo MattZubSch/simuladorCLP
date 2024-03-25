@@ -1,4 +1,3 @@
-import { Table } from "./table";
 import {teams} from "./teams";
 
 //clase Partido (Determina los cruces y el resultado del mismo)
@@ -65,7 +64,6 @@ const bar = teams[4];
 const ind = teams[5];
 const ins = teams[6];
 const ros = teams[7];
-const gim = teams[8];
 const ban = teams[9];
 const rie = teams[10];
 const hur = teams[11];

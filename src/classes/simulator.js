@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+
 import { Table } from "../classes/table";
 import { teams, originalTeams } from "../classes/teams";
 
@@ -61,6 +61,8 @@ export default function SimularResultados(teamSelected, matchesSelected, matches
                     break;
                 case 4:
                     accClCuarto += 1;
+                    break;
+                default:
                     break;
             }
             if (estado.igualdadPts) {
@@ -134,11 +136,11 @@ export default function SimularResultados(teamSelected, matchesSelected, matches
     }
 
     //calcular los promedios de las clasificaciones
-    function obtenerPromedio(numPromediar, numTotal) {
-        let numeroOriginal = (numPromediar *100 ) / numTotal;
-        let promedio = parseFloat(numeroOriginal.toFixed(2));
-        return promedio;
-    }
+    // function obtenerPromedio(numPromediar, numTotal) {
+    //     let numeroOriginal = (numPromediar *100 ) / numTotal;
+    //     let promedio = parseFloat(numeroOriginal.toFixed(2));
+    //     return promedio;
+    // }
 
     //comenzar la simulacion
     function iniciarSimulacion(team) {
