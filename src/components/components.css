@@ -1,0 +1,52 @@
+.header {
+    background-color: red;
+    padding: 20px; /* Espaciado interno del encabezado */
+    width: 100%; /* Ancho completo del encabezado */
+    top: 0; /* Posición en la parte superior de la página */
+    left: 0; /* Posición en el lado izquierdo */
+    z-index: 1000; /* Encabezado en la parte superior */
+
+}
+
+.header h1 {
+    color: white;
+}
+
+.radioInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.matchContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 10px;
+    width: 100%;
+}
+
+.matchData{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 10px;
+    width: 40%;
+}
+
+.labelDisplay{ 
+    display: flex;
+    flex-direction: column; 
+    align-items: center 
+}
+
+.inputDisplay{ 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin-bottom: 5px;
+}
+

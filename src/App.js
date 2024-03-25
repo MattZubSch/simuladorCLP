@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header.js';
+import MainPage from './pages/main.js';
+import RenderMatch from './components/renderMatches.js';
+import MatchRender from './components/MatchRender'
+import SimulatorScreen from './pages/simulatorScreen.js';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      {/* <MainPage /> */}
+      <SimulatorScreen />
+      {/* <MainPage />
+      <RenderMatch /> */}
+      {/* <MatchRender /> */}
     </div>
   );
 }
