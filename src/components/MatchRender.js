@@ -31,9 +31,9 @@ function MatchRender({match, onSelection, onClearSelection}) {
               <label className='labelDisplay'>
                 <input
                   type="radio"
-                  value="Victoria"
-                  checked={selectedOption === 'Victoria'}
-                  onChange={() => handleOptionChange('Victoria')}
+                  value="V"
+                  checked={selectedOption === 'V'}
+                  onChange={() => handleOptionChange('V')}
                   className='inputDisplay'
                 />
                 V
@@ -41,9 +41,9 @@ function MatchRender({match, onSelection, onClearSelection}) {
               <label className='labelDisplay'>
                 <input
                   type="radio"
-                  value="Empate"
-                  checked={selectedOption === 'Empate'}
-                  onChange={() => handleOptionChange('Empate')}
+                  value="E"
+                  checked={selectedOption === 'E'}
+                  onChange={() => handleOptionChange('E')}
                   className='inputDisplay'
                 />
                 E
@@ -51,9 +51,9 @@ function MatchRender({match, onSelection, onClearSelection}) {
               <label className='labelDisplay'>
                 <input
                   type="radio"
-                  value="Derrota"
-                  checked={selectedOption === 'Derrota'}
-                  onChange={() => handleOptionChange('Derrota')}
+                  value="D"
+                  checked={selectedOption === 'D'}
+                  onChange={() => handleOptionChange('D')}
                   className='inputDisplay'
                 />
                 D

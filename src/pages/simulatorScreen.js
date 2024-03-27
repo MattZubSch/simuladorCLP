@@ -1,32 +1,76 @@
-import React, {useState, useEffect} from "react";
-import matches from "../classes/matches";
+import React, {useState, useEffect, useContext} from "react";
+import { Match, matches } from "../classes/matches";
 import SimularResultados from "../classes/simulator";
+import { AppContext } from './appContext'
+import { useLocation } from 'react-router-dom';
+import { teams, originalTeams } from "../classes/teams";
 
 function SimulatorScreen() {
     const [loading, setLoading] = useState(true);
     const [results, setResults] = useState(false);
+    const [simulationCompleted, setSimulationCompleted] = useState(false);
+    const { teamSelected, setTeamSelected, matchSelected, setMatchSelected, matchesToProcess, setMatchesToProcess } = useContext(AppContext);
 
+    const location = useLocation();
+    const teamsToSimulate = teams.map(obj => ({ ...obj }));
+
+
+    const matchesDuplicate = matchesToProcess.map(match => {
+      const copyTeam1 = teamsToSimulate.find(team => team.name === match.team1.name);
+      const copyTeam2 = teamsToSimulate.find(team => team.name === match.team2.name);
+      return new Match(match.id, copyTeam1, copyTeam2, match.result);
+    }
+    );
+    
+      
+      
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const simulationResults = await SimularResultados(teamSelected, matchSelected, matchesDuplicate, teamsToSimulate);
+            setResults(simulationResults);
+            setLoading(false);
+          } catch (error) {
+            console.error('Error al simular resultados:', error);
+            setLoading(false);
+          }
+        };
+    
+        fetchData(); // Llama a la función fetchData para iniciar la simulación
+      }, []);
+
+
+
+    {/*
     useEffect(() => {      
-        function filterTeams(matchesSelected) {
-            return matches.filter(obj1 => !matchesSelected.some(obj2 => obj1.id === obj2.partido.id));
+        // Simular los resultados
+        SimularResultados(teamSelected, matchSelected, matchesToProcess)
+          .then((results) => {
+            setResults(results);
+            setSimulationCompleted(true);
+          })
+          .catch((error) => {
+            console.error("Error al simular resultados:", error);
+            setSimulationCompleted(true); // Manejar el error estableciendo la simulación como completada
+          });
+      }, []);
+    
+      // Redirigir a la página anterior si la simulación se ha completado
+      useEffect(() => {
+        if (simulationCompleted) {
+          setLoading(false); // Ocultar el mensaje de carga
         }
-        
-        
-        const matchesSelected = [
-            {partido: matches[2], seleccion: "V"},
-            {partido: matches[6], seleccion: "D"},
-            {partido: matches[13], seleccion: "V"}
-        ]
-        
-        const teamSelected = "Instituto";
-        
-        const matchesToProcess = filterTeams(matchesSelected);
+      }, [simulationCompleted]);
+      
+    */}
 
-        setResults(SimularResultados(teamSelected, matchesSelected, matchesToProcess));
+    {/*
+    useEffect(() => {      
+        setResults(SimularResultados(teamSelected, matchSelected, matchesToProcess));
         setLoading(false);
     }, []);
-    // console.log("En Screen")
-    // console.log(matchesToProcess)  
+    */}
 
 
     if (loading) {

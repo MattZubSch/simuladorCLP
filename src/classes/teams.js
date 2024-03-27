@@ -44,6 +44,21 @@ const orig_huracan = huracan;
 const orig_indRivadavia = indRivadavia;
 const orig_atlTucuman = atlTucuman;
 
+// const orig_riverPlate = new Team("River Plate", "RIV", 21, 11, 14);
+// const orig_argentinos = new Team("Argentinos", "ARG", 21, 11, 10);
+// const orig_velez = new Team("Velez", "VEL", 21, 11, 1);
+// const orig_talleres = new Team("Talleres", "TAL", 19, 11, 7);
+// const orig_barracasCentral = new Team("Barracas Central", "BAR", 19, 11, 3);
+// const orig_independiente = new Team("Independiente", "IND", 18, 11, 3);
+// const orig_instituto = new Team("Instituto", "INS", 17, 11, 5);
+// const orig_rosarioCentral = new Team("Rosario Central", "ROS", 14, 11, -6);
+// const orig_gimnasia = new Team("Gimnasia", "GIM", 16, 14, -4);
+// const orig_banfield = new Team("Banfield", "BAN", 13, 13, -2);
+// const orig_riestra = new Team("Riestra", "RIE", 13, 13, -7);
+// const orig_huracan = new Team("Huracan", "HUR", 11, 13, -5);
+// const orig_indRivadavia = new Team("Ind. Rivadavia", "CSI", 8, 12, -10);
+// const orig_atlTucuman = new Team("Atl. Tucuman", "ATU", 8, 13, -12);
+
 
 export const teams = [riverPlate, argentinos, velez, talleres, barracasCentral, independiente, instituto, rosarioCentral, gimnasia, banfield, riestra, huracan, indRivadavia, atlTucuman];
 export const relevantTeams = [riverPlate, argentinos, velez, talleres, barracasCentral, independiente, instituto, rosarioCentral]

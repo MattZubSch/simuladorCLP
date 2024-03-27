@@ -1,14 +1,19 @@
 
 import { Table } from "../classes/table";
-import { teams, originalTeams } from "../classes/teams";
+import {originalTeams } from "../classes/teams";
 
-export default function SimularResultados(teamSelected, matchesSelected, matchesToProcess){
-    console.log("#1")
-    console.log("En simulador")
-    console.log(matchesToProcess)
+
+export default function SimularResultados(teamSelected, matchesSelected, matchesToProcess, teamsToSimulate){
+    // console.log("Estructura partidos: ")
+    // console.log(matchesToProcess)
+    return new Promise((resolve, reject) => {
+        try {
+    // console.log("#1")
+    // console.log("En simulador")
+    // console.log(matchesToProcess)
 
     //definir acumuladores
-    console.log("#2")
+    // console.log("#2")
     let accClasificaciones = 0;
     let accClPrimero = 0;
     let accClSegundo = 0;
@@ -35,13 +40,13 @@ export default function SimularResultados(teamSelected, matchesSelected, matches
     //definir tabla
     function crearTabla(team) {  
         const tabla = new Table();
-        for (let i = 0; i < teams.length; i++) {
-            tabla.agregarEquipo(teams[i]);
+        for (let i = 0; i < teamsToSimulate.length; i++) {
+            tabla.agregarEquipo(teamsToSimulate[i]);
         }
     
         //ordenar tabla
         tabla.sortTeams();
-    
+        // console.log(tabla)
         //recuperar posicion en la tabla (team = equipo buscado)
         const estado = estaEnLosPrimerosCuatro(team, tabla.equipos);
         //evaluar posicion
@@ -83,14 +88,20 @@ export default function SimularResultados(teamSelected, matchesSelected, matches
     //actualizar tabla (simulacion de partidos)
     function actualizarPartidosYEquipos(matchesToProcess, results, team, equipos) {
         for (let i = 0; i < matchesToProcess.length; i++) {
+            // console.log("Partido a actualizar: " + i)
+            // console.log(matchesToProcess[i])
             matchesToProcess[i].changeResult(results[i]);
+            // console.log("Partido actualizado: " + i)
+            // console.log(matchesToProcess[i])
             matchesToProcess[i].updateTeams();
+            // console.log("Equipos actualizados: " + i)
+            // console.log(equipos)
         }
         crearTabla(team);
         resetearEquipos(equipos);
     }
 
-    console.log("#3")
+    // console.log("#3")
     const resultadosPosibles = ["V", "E", "D"];
     const partidos = []; // Aquí almacenaremos los resultados de los partidos
 
@@ -106,22 +117,22 @@ export default function SimularResultados(teamSelected, matchesSelected, matches
     }
   
     // llamar a la funcion para generar los resultados posibles. El primer parametro es el valor iterador inicial, y el segundo es el array donde se van a ir guardando los resultados
-    console.log("#4")
+    // console.log("#4")
     generarCombinaciones(0, [])
     const resultados = partidos;
-    console.log("#5")
+    // console.log("#5")
 
     //reiniciar los cambios de los equipos
     function resetTeamsToOriginal() {
-        for (let i = 0; i < teams.length; i++) {
-            teams[i] = originalTeams[i];
-        }
+        teamsToSimulate = originalTeams.map(team => ({ ...team }));
     }
 
 
     //guardar referencia de los partidos con resultado seleccionado
     //Accion: actualizar los valores originales de cada equipo
     function updateSelectedMatches(matchesSelected) {
+        console.log("Partidos seleccionados")
+        console.log(matchesSelected)
         resetTeamsToOriginal();
         matchesSelected.forEach(matchToUpdate => {
             console.log(matchToUpdate)
@@ -144,16 +155,16 @@ export default function SimularResultados(teamSelected, matchesSelected, matches
 
     //comenzar la simulacion
     function iniciarSimulacion(team) {
-        console.log("#7")
-        console.log(team)
-        console.log("ingreso")
+        // console.log("#7")
+        // console.log(team)
+        // console.log("ingreso")
         //iniciar la iteracion de resultados
-        console.log("#8")
-        console.log("Resultados a utilizar: " + resultados.length)
+        // console.log("#8")
+        // console.log("Resultados a utilizar: " + resultados.length)
         for (let i = 0; i < resultados.length; i++) {
-            actualizarPartidosYEquipos(matchesToProcess, resultados[i], team, teams);
+            actualizarPartidosYEquipos(matchesToProcess, resultados[i], team, teamsToSimulate);
         }
-        console.log("#9")
+        // console.log("#9")
         console.log("Simulacion finalizada")
         // console.log("Resultados posibles: " + partidos.length)
         // console.log("Clasificaciones" + accClasificaciones)
@@ -166,10 +177,28 @@ export default function SimularResultados(teamSelected, matchesSelected, matches
 
 
     //actualizar partidos seleccionados
-    console.log("#6")
-    updateSelectedMatches(matchesSelected, matchesToProcess);
+    // console.log("#6")
+    updateSelectedMatches(matchesSelected);
     //iniciar simulacion
     iniciarSimulacion(teamSelected);
 
-    return {escenarios: resultados.length, clasificaciones: accClasificaciones, primeros: accClPrimero, segundos: accClSegundo, terceros: accClTercero, cuartos: accClCuarto, clasificaPorDif: accCLasificaPorDif, team: teamSelected}
-} 
+  // Almacenar los resultados de la simulación
+  const results = {
+    escenarios: resultados.length,
+    clasificaciones: accClasificaciones,
+    primeros: accClPrimero,
+    segundos: accClSegundo,
+    terceros: accClTercero,
+    cuartos: accClCuarto,
+    clasificaPorDif: accCLasificaPorDif,
+    team: teamSelected
+  };
+
+  // Resolver la promesa con los resultados
+  resolve(results);
+} catch (error) {
+  // En caso de error, rechazar la promesa
+  reject(error);
+}
+});
+}

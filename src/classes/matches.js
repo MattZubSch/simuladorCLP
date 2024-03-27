@@ -1,7 +1,7 @@
 import {teams} from "./teams";
 
 //clase Partido (Determina los cruces y el resultado del mismo)
-class Match {
+export class Match {
     constructor(id, team1, team2, result) {
         this.id = id;
         this.team1 = team1;
