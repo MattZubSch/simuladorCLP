@@ -1,9 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react'
 import matches from '../classes/matches'
-import { relevantTeams, teams, originalTeams } from '../classes/teams'
+import { relevantTeams } from '../classes/teams'
 import MatchRender from '../components/MatchRender'
-import Alert from '../components/Alert'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'; 
+
 import { AppContext } from './appContext'
 import { useNavigate } from 'react-router-dom';
 
@@ -45,7 +44,7 @@ function Matches({ matches, seleccionTemporal, setSeleccionTemporal }) {
 
 export default function MainPage() {
   const [checkStatus, setCheckStatus] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  // const [showAlert, setShowAlert] = useState(false);
   const [itInitialRender, setItInitialRender] = useState(true);
 
   const [simulate, setSimulate] = useState(false);
@@ -129,10 +128,10 @@ function TeamSelector({ opciones, onSelect }) {
     // console.log(matchesToSimulate)
   }
 
-  function handleConfirm() {
-    setShowAlert(false); // Oculta la alerta
-    updateMatches(matchSelected);
-  }
+  // function handleConfirm() {
+  //   // setShowAlert(false); // Oculta la alerta
+  //   updateMatches(matchSelected);
+  // }
 
   function updateMatches (matchesSelected) {
     // console.log("Matches Seleccionados: ")

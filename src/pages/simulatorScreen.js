@@ -1,26 +1,26 @@
 import React, {useState, useEffect, useContext} from "react";
-import { Match, matches } from "../classes/matches";
+// import { Match, matches } from "../classes/matches";
 import SimularResultados from "../classes/simulator";
 import { AppContext } from './appContext'
-import { useLocation } from 'react-router-dom';
-import { teams, originalTeams } from "../classes/teams";
+// import { useLocation } from 'react-router-dom';
+import { teams } from "../classes/teams";
 
 function SimulatorScreen() {
     const [loading, setLoading] = useState(true);
     const [results, setResults] = useState(false);
-    const [simulationCompleted, setSimulationCompleted] = useState(false);
-    const { teamSelected, setTeamSelected, matchSelected, setMatchSelected, matchesToProcess, setMatchesToProcess } = useContext(AppContext);
+    // const [simulationCompleted, setSimulationCompleted] = useState(false);
+    const { teamSelected, matchSelected, matchesToProcess } = useContext(AppContext);
 
-    const location = useLocation();
-    const teamsToSimulate = teams.map(obj => ({ ...obj }));
+    // const location = useLocation();
+    // const teamsToSimulate = teams.map(obj => ({ ...obj }));
 
 
-    const matchesDuplicate = matchesToProcess.map(match => {
-      const copyTeam1 = teamsToSimulate.find(team => team.name === match.team1.name);
-      const copyTeam2 = teamsToSimulate.find(team => team.name === match.team2.name);
-      return new Match(match.id, copyTeam1, copyTeam2, match.result);
-    }
-    );
+    // const matchesDuplicate = matchesToProcess.map(match => {
+    //   const copyTeam1 = teamsToSimulate.find(team => team.name === match.team1.name);
+    //   const copyTeam2 = teamsToSimulate.find(team => team.name === match.team2.name);
+    //   return new Match(match.id, copyTeam1, copyTeam2, match.result);
+    // }
+    // );
     
       
       
@@ -38,39 +38,39 @@ function SimulatorScreen() {
         };
     
         fetchData(); // Llama a la función fetchData para iniciar la simulación
-      }, []);
+      }, []);// eslint-disable-next-line
 
 
 
-    {/*
-    useEffect(() => {      
-        // Simular los resultados
-        SimularResultados(teamSelected, matchSelected, matchesToProcess)
-          .then((results) => {
-            setResults(results);
-            setSimulationCompleted(true);
-          })
-          .catch((error) => {
-            console.error("Error al simular resultados:", error);
-            setSimulationCompleted(true); // Manejar el error estableciendo la simulación como completada
-          });
-      }, []);
+    // {/*
+    // useEffect(() => {      
+    //     // Simular los resultados
+    //     SimularResultados(teamSelected, matchSelected, matchesToProcess)
+    //       .then((results) => {
+    //         setResults(results);
+    //         setSimulationCompleted(true);
+    //       })
+    //       .catch((error) => {
+    //         console.error("Error al simular resultados:", error);
+    //         setSimulationCompleted(true); // Manejar el error estableciendo la simulación como completada
+    //       });
+    //   }, []);
     
-      // Redirigir a la página anterior si la simulación se ha completado
-      useEffect(() => {
-        if (simulationCompleted) {
-          setLoading(false); // Ocultar el mensaje de carga
-        }
-      }, [simulationCompleted]);
+    //   // Redirigir a la página anterior si la simulación se ha completado
+    //   useEffect(() => {
+    //     if (simulationCompleted) {
+    //       setLoading(false); // Ocultar el mensaje de carga
+    //     }
+    //   }, [simulationCompleted]);
       
-    */}
+    // */}
 
-    {/*
-    useEffect(() => {      
-        setResults(SimularResultados(teamSelected, matchSelected, matchesToProcess));
-        setLoading(false);
-    }, []);
-    */}
+    // {/*
+    // useEffect(() => {      
+    //     setResults(SimularResultados(teamSelected, matchSelected, matchesToProcess));
+    //     setLoading(false);
+    // }, []);
+    // */}
 
 
     if (loading) {
