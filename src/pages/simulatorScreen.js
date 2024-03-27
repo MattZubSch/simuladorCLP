@@ -28,7 +28,7 @@ function SimulatorScreen() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const simulationResults = await SimularResultados(teamSelected, matchSelected, matchesDuplicate, teamsToSimulate);
+            const simulationResults = await SimularResultados(teamSelected, matchSelected, matchesToProcess, teams);
             setResults(simulationResults);
             setLoading(false);
           } catch (error) {
