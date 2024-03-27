@@ -4,6 +4,7 @@ import SimularResultados from "../classes/simulator";
 import { AppContext } from './appContext'
 // import { useLocation } from 'react-router-dom';
 import { teams } from "../classes/teams";
+// import matches from "../classes/matches";
 
 function SimulatorScreen() {
     const [loading, setLoading] = useState(true);
@@ -38,7 +39,7 @@ function SimulatorScreen() {
         };
     
         fetchData(); // Llama a la función fetchData para iniciar la simulación
-      }, []);// eslint-disable-next-line
+      }, [matchSelected, matchesToProcess, teamSelected]);// eslint-disable-next-line
 
 
 

@@ -65,7 +65,7 @@ export default function MainPage() {
       // console.log("Equipos originales: ")
       // console.log(originalTeams)
     }
-  }, [itInitialRender]);
+  }, [itInitialRender, setMatchSelected, setMatchesToProcess, setTeamSelected]);
     
 
   useEffect(() => {
@@ -150,13 +150,13 @@ function TeamSelector({ opciones, onSelect }) {
     if (checkStatus) {
       showProps(teamSelected, matchSelected, matchesToProcess);
     }
-  }, [matchesToProcess]);
+  }, [matchesToProcess, checkStatus, matchSelected, teamSelected]);
 
   useEffect(() => {
     if (simulate) {
       navigate('/simulator')
     }
-  }, [simulate]);
+  }, [simulate, navigate]);
   // console.log("Seleccion Temporal: ")
   // console.log(matchSelected)
 
